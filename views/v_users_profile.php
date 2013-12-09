@@ -9,22 +9,25 @@
 
 	<p>Add a photo!</p>
 	
-	<form method="POST" action="/users/upload_image" enctype="multipart/form-data">
-		<label for="file">Filename:</label>
-		<input type="file" name="file" id="file"><br>
+	<form method="POST" action="/users/upload_image"  id="image_upload"/>
+		<label for="field">Filename (images only):</label>
+		<input type="file" class="left" id="field" name="field" ><br>
 		<input type="submit" name="submit" value="Submit">
 	</form>
 
 	<br>
 
-	<?php if(isset($user->image_location)): ?>
-		<img src="../<?=$user->image_location?>" width="150" height="150" alt="profile_pic">
-	<?php else: ?>
+	
+
+	<?php if(!isset($user->image_location)): ?>
 		<img src="/images/nophoto.jpg" width="150" height="150" alt="no_photo">
+	<?php else: ?>
+		<img src="../<?=$user->image_location?>" width="150" height="150" alt="profile_pic">
 	<?php endif; ?>
 
 	<br>
 
+	<!--
 	<?php if(isset($error)): ?>
         <div class='error'>
         </br>
@@ -32,6 +35,8 @@
         </div>
         <br>
     <?php endif; ?>
+
+	-->
 
 	
 </p>

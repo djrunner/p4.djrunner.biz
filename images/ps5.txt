@@ -1,0 +1,332 @@
+1. Heaps and heapsort
+
+a)
+
+       37
+      /  \
+     /    \
+   46      25
+  /  \    /  \
+ 23  32  70  55
+
+switch the 25 and the 70       
+
+       37
+      /  \
+     /    \
+   46      70
+  /  \    /  \
+ 23  32  25  55   
+
+because 46 is greater than it's children, no change is nessecary
+
+       37
+      /  \
+     /    \
+   46      70
+  /  \    /  \
+ 23  32  25  55
+
+Lastly, shift down 37, moving both the 70 and the 55
+
+       70
+      /  \
+     /    \
+   46      55
+  /  \    /  \
+ 23  32  25  37
+
+b) Array of Heap: [70, 46, 55, 23, 32, 25, 37]
+
+c) iteration of heap-sort:
+
+[55, 46, 37, 23, 32, 25, 70]
+
+[46, 32, 37, 12, 25, 55, 70]
+
+[37, 32, 25, 23, 46, 55, 70]
+
+[32, 23, 25, 37, 46, 55, 70]
+
+[25, 23, 32, 37, 46, 55, 70]
+
+[23, 25, 32, 37, 46, 55, 70]
+
+
+
+2. Hash tables
+
+a) linear probing:
+
+| "ant"   |
+| "flea"  |
+| "bat"   |
+| "cat"   |
+| "goat"  |
+| "dog"   |
+| "bird"  |
+| "bison" |
+
+The string "duck" will cause the table to overflow,
+as show above.
+
+b) quadratic
+
+| "ant"   |
+| "flea"  |
+| "bat"   |
+| "cat"   |
+| "goat"  |
+| "bird"  |
+| "bison" |
+| "dog"   |
+
+The string "duck" will cause the table to overflow,
+as show above.
+
+c) double hashing
+
+| "bat"   |
+| "ant"   |
+| "flea"  |
+| "cat"   |
+| "goat"  |
+| "bison" |
+| "bird"  |
+| "dog"   |
+
+The string "duck" will cause the table to overflow,
+as show above.
+
+3.   Informed state-space search
+
+a) h(x) = 16
+
+b) First four states Greedy would look at:
+
+	1. state b, p = -h(x) = -15
+	2. state e, p = -h(x) = -14
+	3. state i, p = -h(x) = -13
+	4. state j, p = -h(x) = -13
+
+c) First four states A* would look at
+
+	1. state b, p = -(h(x) + g(x)) = -(15 + 1) = -16
+	4. state e, p = -(h(x) + g(x)) = -(14 + 2) = -16
+	3. state i, p = -(h(x) + g(x)) = -(13 + 3) = -16
+	4. state j, p = -(h(x) + g(x)) = -(13 + 3) = -16  
+
+4)
+
+a)
+With a linked-list priority queue, the the item to be removed would always be at
+the front of the list. A temp variable would store the first item in the linked-list,
+and then the reference to the first item would simply be changed to the second item.
+This would have a time complexity of O(1).
+
+b)  
+The efficiency of the insert operation of the linked-list implementation would be
+linear, O(n). This is because the list has to be scanned in order to find the correct
+place for the item to be inserted.
+
+5)
+a) The code for Breadth-First Traversal can be used for determining
+if two vertices are connected.
+
+private static boolean connected(Vertex origin, Vertex other) {
+    origin.encountered = true;
+    origin.parent = null;
+    Queue<Vertex> q = new LLQueue<Vertex>();
+    q.insert(origin);
+
+    while (!q.isEmpty()) {
+       vertex v = q.remove();
+       if (v.id.equals(other.id) return true;
+       
+       // Add v's unencountered neighbors to the queue.
+       Edge e = v.edges;
+       while (e != null) {
+           if (!w.encountered) {
+               w.encountered = true;
+               w.parent = v;
+               q.insert(w);
+           }
+           e = e.next;
+    }
+    //every vertex in the graph has been added to the queue
+    //and Vertex other was not found
+    return false;
+}
+
+b)
+Best-case time efficiency would be O(1). This would be the case where the next
+vertex entered into the queue was vertex other. It also must be the case that vertex
+origin only has one edge, and that edge is vertext other. If vertex origin has multiple
+edges, they will all be added to the queue before vertex other is removed the queue and
+compared.
+Worst-case time efficiency would be O(n^2) (big O of n squared). This would be the result
+of looking through every vertex in the graph. Because of the nested while loops, not only is
+each vertext looked checked, but each edge for each vertext would be checked. Even though
+towards the end of search most vertices would have been encountered, the check is still occuring
+within the nested while loop, thus O(n^2).
+
+6)
+
+a) Order from Denver in breadth-first traversal,
+Denver, Seatle, O'Hare, San Jose, Atlanta, Washington, New York, Boston, L.A.
+
+b) Path from Denver to Boston in spanning tree
+Denver -> O'Hare -> Boston
+
+c) Order from Denver in depth-first traversal,
+Denver, Seatle, O'Hare, Atlanta, Washington, New York, Boston, L.A., San Jose
+
+d) Path from Denver to Boston in spanning tree
+Denver -> O'Hare -> Atlanta -> Washington -> New York -> Boston
+
+7)
+
+a)
+
+edge added		| Set A                    | Set B
+--------------------------------------------------------------------------------
+			| {Denver}                 | { Atlanta, Boston, L.A, 
+			|		           |   O'Hare, New York, San Jose,
+                	|                          |   Seattle, Washington }
+-------------------------------------------------------------------------------- 
+(Denver, Seattle) 	| {Denver, Seattle}	   | { Atlanta, Boston, L.A,
+			|			   |   O'Hare, New York, San Jose,
+			|			   |   Washington }
+--------------------------------------------------------------------------------
+(Denver, O'Hare)	| {Denver, O'Hare, Seattle}| { Atlanta, Boston, L.A.
+			|			   |   New York, San Jose, Washington }
+--------------------------------------------------------------------------------'
+(O'Hare, Atlanta)	| {Denver, O'Hare, Seattle,| { Boston, L.A., New York,
+			|  Atlanta}		   |   San Jose, Washington }
+----------------------------------------------------------------------------------
+(Atlanta, Washington)	| {Denver, O'Hare, Seattle,| {Boston, L.A., New york, San Jose }
+ 			|  Atlanta, Washington }   |  
+-----------------------------------------------------------------------------------
+(Washington, New York)	| {Denver, O'Hare, Seattle,| {Boston, L.A., San Jose}
+			| Atlanta, Washington,     |
+                        | New York}		   |
+--------------------------------------------------------------------------------------
+(New York, Boston)	| {Denver, O'Hare, Seattle,| {L.A., San Jose}
+			| Atlanta, Washington,	   |
+                        | New York, Boston }       |
+---------------------------------------------------------------------------------------
+(Denver, San Jose)	| {Denver, O'Hare, Seattle,| {L.A.}
+			| Atlanta, Washington,	   |
+                        | New York, Boston,        |
+                        | San Jose }		   |
+----------------------------------------------------------------------------------------
+(San Jose, L.A.)	| {Denver, O'Hare, Seattle,|
+			| Atlanta, Washington,	   |
+ 			| New York, Boston	   |
+			| San Jose, L.A.}
+
+
+8)
+a) Note: finalized represented by []
+
+Atlanta		inf	inf	1800	1800	1800	[1800]	
+Boston		inf	inf	2000	2000	2000	2000	2000	2000	[2000]
+Denver		[0]	
+L.A.		inf	inf	3100	1600	[1600]
+New York	inf	inf	1900	1900	1900	1900	1900	[1900]
+O'Hare		inf	1100	[1100]
+San Jose	inf	1200	1200	[1200]
+Seattle		inf	[900]
+Washington	inf	inf	1850	1850	1850	1850	[1850]
+
+b) Paths from Denver to L.A.
+1st path: Denver -> O'Hare -> L.A.
+second/final path: Denver -> San Jose -> L.A.
+
+9)
+a) Graph 9-1 is a DAG.
+
+The vertices will be added to a stack in the following order:
+C, D, A, B, E, F
+
+One possible toplogical ordering of the vertices in the graph is as follows:
+F-> E-> B-> A-> D-> C
+
+b) Graph 9-2 is NOT a DAG, it has the following cycles:
+A -> F -> B -> E -> A
+A -> F -> C -> B -> E -> A
+
+10)
+Intial sets:
+{Atlanta}, {Boston}, {Denver}, {L.A.}, {New York}, {O'Hare}, {San Jose}, {Seattle}, {Wash.}
+
+First edge to consider (Boston, New York), connects two different sets, can join MST.
+{Atlanta}, {Boston, New York}, {Denver}, {L.A.}, {O'Hare}, {San Jose}, {Seattle}, {Wash.}
+
+Next edge to consider (New York, Wash.), connects two different sets, can join MST
+{Atlanta}, {Boston, New York, Wash.}, {Denver}, {L.A.}, {O'Hare}, {San Jose}, {Seattle}
+
+Next edge to consider (San Jose, L.A.), connects two different sets, can join MST
+{Atlanta}, {Boston, New York, Wash.}, {Denver}, {L.A., San Jose}, {O'Hare}, {Seattle}
+
+Next edge to consider (Atlanta, Washington), connects two different sets, can join MST
+{Atlanta, Boston, New York, Wash.}, {Denver}, {L.A., San Jose}, {O'Hare}, {Seattle}
+
+Next edge to consider (Atlanta, O'Hare), connects two different sets, can join MST
+{Atlanta, Boston, New York, O'Hare, Wash.}, {Denver}, {L.A., San Jose}, {Seattle}
+
+Next edge to consider (O'Hare, Wash.), does not connect two different sets, cannot join MST
+
+Next edge to consider (O'Hare, New York), does not connect two different sets, cannot join MST
+
+Next edge to consider (O'Hare, Boston), does not connect two different sets, cannot join MST
+
+Next edge to consider (Seattle, Denver), connects two different sets, can join MST
+{Atlanta, Boston, New York, O'Hare, Wash.}, {Denver, Seattle}, {L.A., San Jose}
+
+Next edge to consider (Denver, O'Hare), connects two different sets, can join MST
+{Atlanta, Boston, Denver, New York, O'Hare, Seattle, Wash.}, {L.A., San Jose}
+
+Next edge to consider (Denver, San Jose), connects two different sets, can join MST
+{Atlanta, Boston, Denver, L.A., New York, O'Hare,San Jose, Seattle, Wash.}
+
+The remaining edges to not need to be looked at, as there is only one set, which is the MST
+
+11)
+
+A Maximum-cost spanning tree can be created in a similar fashion to Prim's algorithm
+of a minimum-cost spanning tree. Giving a starting vertex as a lone member of a set, 
+you find the largest (most expensive) edge to an adjecent vertex not in the same set,
+and add that vertex to the original vertex.
+
+Set A {contains starting vertex}
+Set B {contains all over vertices}
+while (there is still a vertex in Set B)
+    find the longest edge between a vertex in set A and a vertex in Set B
+    add the found edge to the Maximum-cost spanning tree
+    add the vertex from the previous edge to set A from Set B
+
+12) Dijkstra's shortest-path algorithm will be used to solve this problem.
+    Note: [] will be used to denote a finalized position
+
+server 1	inf	325	325	275	[275]		
+server 2	inf	150	[150]
+server 3	inf	[120]	
+server 4	inf	275	260	[260]
+server 5	[0]	
+server 6	inf	inf	inf	inf	inf	775	[775]		
+server 7	inf	inf	inf	inf	inf	inf	945	[890]
+server 8   	inf	625	625	625	545	[545]
+
+List of destinations from server #5:
+
+server #5 -> server #3 						(120)
+server #5 -> server #2						(150)
+server #5 -> server #3 -> server #4				(260)
+server #5 -> server #2 -> server #1				(275)
+server #5 -> server #3 -> server #4 -> server #8		(545)
+server #5 -> server #2 -> server #1 -> server #6		(775)
+server #5 -> server #2 -> server #1 -> server #6 -> server #7	(890)
+
+Because we are starting at one position and determining the shortest-path
+to ALL positions from this one position, the above algorithm is appropriate.

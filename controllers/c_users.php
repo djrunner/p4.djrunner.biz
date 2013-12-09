@@ -196,12 +196,21 @@ class users_controller extends base_controller {
 
         #Create array of CSS files
         $client_files_head = Array (
-            '../css/css.css',
-            '../../css/css.css'
+        "http://jquery.bassistance.de/validate/demo/site-demos.css"
             );
 
         #Use Load client_files to generate the links from the above array
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
+
+        #Create array of CSS files
+        $client_files_body = Array (
+        'http://jquery.bassistance.de/validate/jquery.validate.js',
+        'http://jquery.bassistance.de/validate/additional-methods.js',
+        '../js/profile.js'
+            );
+
+        #Use Load client_files to generate the links from the above array
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);
 
         echo $this->template;
 
@@ -210,10 +219,13 @@ class users_controller extends base_controller {
 
     public function upload_image() {
 
+
         # Allows user to upload a picture,
         $allowedExts = array("gif", "jpeg", "jpg", "png");
         $temp = explode(".", $_FILES["file"]["name"]);
         $extension = end($temp);
+
+        /*
 
         # The file uploaded must be a gif, jpeg, jpg, pjpeg, x-png, or png
         # The file cannot be any other file (i.e exe)
@@ -234,22 +246,23 @@ class users_controller extends base_controller {
 
             else {
     
-               
+                */     
                     # Actual file stored in images folder
                     move_uploaded_file($_FILES["file"]["tmp_name"],
                     "images/" . $_FILES["file"]["name"]);
 
-                    # Reference to image store in DB
+                    # Reference to image stored in DB
                     $data = Array("image_location" => "images/" . $_FILES["file"]["name"]);
                     DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
 
                     Router::redirect('/users/profile');
-                
+                /*
             }
         }
         # If file not acceptable
         else {
             Router::redirect("/users/profile/error");
         }
+    */
     }
 } # end of the class
