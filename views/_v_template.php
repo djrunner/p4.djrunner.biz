@@ -21,6 +21,7 @@
 
 			<a href='/users/logout'>Logout</a><br>
 			<a href='/users/Profile'>Profile</a><br>
+			<a href='/races/add'>Add a Race</a><br>
 			<!--
 			<a href='/posts/index'>See Posts</a><br>
 			<a href='/posts/add'>Add Posts</a><br>

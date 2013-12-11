@@ -9,4 +9,4 @@ $( "#image_upload" ).validate({
       accept: "image/*"
     }
   }
-})
+});

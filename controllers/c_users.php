@@ -219,13 +219,18 @@ class users_controller extends base_controller {
 
     public function upload_image() {
 
+        print_r($_POST);
+
+        /*
 
         # Allows user to upload a picture,
         $allowedExts = array("gif", "jpeg", "jpg", "png");
         $temp = explode(".", $_FILES["file"]["name"]);
         $extension = end($temp);
 
-        /*
+
+
+        
 
         # The file uploaded must be a gif, jpeg, jpg, pjpeg, x-png, or png
         # The file cannot be any other file (i.e exe)
@@ -245,24 +250,28 @@ class users_controller extends base_controller {
             }
 
             else {
-    
-                */     
+                    
+                   
                     # Actual file stored in images folder
-                    move_uploaded_file($_FILES["file"]["tmp_name"],
-                    "images/" . $_FILES["file"]["name"]);
+                    move_uploaded_file($_FILES["field"]["tmp_name"],
+                    "images/" . $_FILES["field"]["name"]);
 
                     # Reference to image stored in DB
                     $data = Array("image_location" => "images/" . $_FILES["file"]["name"]);
                     DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
 
                     Router::redirect('/users/profile');
-                /*
+                    /*
             }
         }
         # If file not acceptable
         else {
-            Router::redirect("/users/profile/error");
-        }
-    */
+            
+                        Router::redirect("/users/profile/error");
+
+            */
+        
+        
+    
     }
 } # end of the class
