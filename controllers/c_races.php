@@ -22,6 +22,7 @@ class races_controller extends base_controller {
 
         #Create array of CSS files
         $client_files_head = Array (
+            'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
             '../js/races_add.js'
             );
 

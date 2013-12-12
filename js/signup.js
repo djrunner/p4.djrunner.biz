@@ -1,1 +1,1 @@
-$("#commentForm").validate();
+$("#signup_form").validate();

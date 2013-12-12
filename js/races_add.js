@@ -1,54 +1,64 @@
 $(function() {
 
 
-var hours;
-var minutes;
-var seconds;
+var time_hours = 0;
+var time_minutes = 0;
+var time_seconds = 0;
+
+var pace_minutes = 0;
+var pace_seconds = 0;
 
 $( document ).ready(function() {
 	
 	for (var i = 0; i < 10; i++)	{
-		$("#hours").append("<option>" + i + "</option>");
+		$("#time_hours").append("<option>" + i + "</option>");
 	}
 
 	for (var i = 0; i < 59; i++)	{
-		$("#minutes").append("<option>" + i + "</option>");
+		$("#time_minutes").append("<option>" + i + "</option>");
 	}
 
 	for (var i = 0; i < 59; i++)	{
-		$("#seconds").append("<option>" + i + "</option>");
+		$("#time_seconds").append("<option>" + i + "</option>");
+	}
+
+	for (var i = 0; i < 59; i++)	{
+		$("#pace_minutes").append("<option>" + i + "</option>");
+	}
+
+	for (var i = 0; i < 59; i++)	{
+		$("#pace_seconds").append("<option>" + i + "</option>");
 	}
 
 });
 
-$('#hours').click(function() {
+$('#time_hours').click(function() {
 
-	hours  = parseInt($('#hours').find('option:selected').text());
-
-});
-
-$('#minutes').click(function() {
-
-	minutes = parseInt($('#minutes').find('option:selected').text());
+	time_hours  = parseInt($('#time_hours').find('option:selected').text());
 
 });
 
+$('#time_minutes').click(function() {
 
-$('#seconds').click(function() {
+	time_minutes = parseInt($('#time_minutes').find('option:selected').text());
 
-	seconds = parseInt($('#seconds').find('option:selected').text());
+});
+
+
+$('#time_seconds').click(function() {
+
+	time_seconds = parseInt($('#time_seconds').find('option:selected').text());
 
 });
 
 
 $('#calculate').click(function() {
 	console.log("test");
-  console.log(hours);
-  console.log(minutes);
-  console.log(seconds);
+  console.log(time_hours);
+  console.log(time_minutes);
+  console.log(time_seconds);
 });
 
 });
 
-
-console.log("hello!");
+$("#race_add_form").validate();

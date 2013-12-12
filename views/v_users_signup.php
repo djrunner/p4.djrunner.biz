@@ -1,6 +1,6 @@
 <div class="mainBox" id="users_signUp">
 
-<form class="cmxform" id="commentForm" method='POST' action='/users/p_signup'>
+<form class="cmxform" id="signup_form" method='POST' action='/users/p_signup'>
     <fieldset>
     <legend>Please provide your name, email address (won't be published) and a comment</legend>
     <p>
