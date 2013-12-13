@@ -1,8 +1,8 @@
-<div class="mainBox" id="users_signUp">
+<div id="users_signUp">
 
 <form class="cmxform" id="signup_form" method='POST' action='/users/p_signup'>
     <fieldset>
-    <legend>Please provide your name, email address (won't be published) and a comment</legend>
+    <legend>Please provide your name, email address and a password</legend>
     <p>
       <label for="first_name">First Name (required, at least 2 characters)</label></br>
       <input id="first_name" name="first_name" minlength="2" type="text" required/>

@@ -22,12 +22,19 @@ class races_controller extends base_controller {
 
         #Create array of CSS files
         $client_files_head = Array (
-            'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
-            '../js/races_add.js'
+            
             );
 
         #Use Load client_files to generate the links from the above array
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
+
+         $client_files_body = Array (
+            'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js',
+            '../js/races_add.js'
+            );
+
+         #Use Load client_files to generate the links from the above array
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);
 
 		# Render template
 		echo $this->template;
@@ -38,10 +45,27 @@ class races_controller extends base_controller {
 
         print_r($_POST);
 
-        /*
-
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
+
+        if ($_POST['time_hours'] == 0)  {
+            $_POST['time_hours'] == null;
+        }
+
+        $race_time_string = "" + $_POST['time_hours'] + ":" + 
+                                    $_POST['time_minutes'] + ":" +
+                                    $_POST['time_seconds'];
+
+        $_POST['race_time_string'] = race_time_string;
+
+
+        # Insert
+        DB::instance(DB_NAME)->insert('races', $_POST);
+
+        # Send user to list of posts
+        Router::redirect('/races/add');
+
+        /*
 
 		# Unix timestamp of when this post was created / modifed
 		$_POST['created'] = Time::now();
