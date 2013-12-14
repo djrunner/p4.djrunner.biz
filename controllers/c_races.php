@@ -43,20 +43,27 @@ class races_controller extends base_controller {
 
 	public function p_add() {
 
-        print_r($_POST);
 
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
 
-        if ($_POST['time_hours'] == 0)  {
-            $_POST['time_hours'] == null;
-        }
+        $string = $_POST['race_time_string'];
 
-        $race_time_string = "" + $_POST['time_hours'] + ":" + 
-                                    $_POST['time_minutes'] + ":" +
-                                    $_POST['time_seconds'];
+        $seconds = (int) $string{7}; 
+        $ten_seconds = 10 * ( (int) $string{6});
+        $seconds = $seconds + $ten_seconds;
 
-        $_POST['race_time_string'] = race_time_string;
+        $minutes = (int) $string{4};
+        $ten_minutes = 10 * ( (int) $string{3});
+        $minutes = 60 * ($minutes + $ten_minutes);
+
+        $hours = (int) $string{1};
+        $ten_hours = 10 * ( (int) $string{0});
+        $hours = 60 * 60 * ($hours + $ten_hours);
+
+        $time_in_seconds = $seconds + $minutes + $hours;
+
+        $_POST['race_time_int'] = $time_in_seconds;
 
 
         # Insert
@@ -64,20 +71,6 @@ class races_controller extends base_controller {
 
         # Send user to list of posts
         Router::redirect('/races/add');
-
-        /*
-
-		# Unix timestamp of when this post was created / modifed
-		$_POST['created'] = Time::now();
-		$_POST['modified'] = Time::now();
-
-		# Insert
-		DB::instance(DB_NAME)->insert('posts', $_POST);
-
-		# Send user to list of posts
-        Router::redirect('/posts/index');
-
-        */
 	
 	}
 

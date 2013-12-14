@@ -31,12 +31,13 @@
 			<br><br>
 		</p>
 		<p>
-		<label>Race Pace (Enter in HH:MM:SS): </label>
-		<input type="text" name="pace_time_string" size="8" minlength="8" maxlength="8" class="required class_format_check"/>
+		<label>Race Pace (Enter in MM:SS): </label>
+		<input type="text" name="race_pace_string" size="8" minlength="5" maxlength="5" class="required class_format_check"/>
+		<label>Minute/Mile</label>
 			<br><br>
 		</p>
 		<p>
-		<input type="submit" name="submit" value"Submit">
+		<input type="submit" value"Submit">
 		</p>
 		</fieldset>
 	</form>
