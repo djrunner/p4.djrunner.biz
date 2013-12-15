@@ -65,6 +65,19 @@ class races_controller extends base_controller {
 
         $_POST['race_time_int'] = $time_in_seconds;
 
+        $string = $_POST['race_pace_string'];
+
+        $seconds = (int) $string{4}; 
+        $ten_seconds = 10 * ( (int) $string{3});
+        $seconds = $seconds + $ten_seconds;
+
+         $minutes = (int) $string{1};
+        $ten_minutes = 10 * ( (int) $string{0});
+        $minutes = 60 * ($minutes + $ten_minutes);
+
+        $time_in_seconds = $seconds + $minutes;
+
+        $_POST['race_pace_int'] = $time_in_seconds;
 
         # Insert
         DB::instance(DB_NAME)->insert('races', $_POST);
@@ -82,7 +95,8 @@ class races_controller extends base_controller {
     $this->template->content = View::instance('v_races_index');
     $this->template->title   = "Races";
 
-    # Build the query
+
+    # Build the query for 5 Kilometer races
     # Order posts by created date in Descending order
     $q = 'SELECT
         races.user_id,
@@ -94,8 +108,8 @@ class races_controller extends base_controller {
         races.race_time_int,
         races.race_pace_string
         FROM races
-        WHERE races.user_id = ".$this->user->user_id ." and races.race_length = "5 Kilometers"
-        ORDER BY races.race_date' ;
+        WHERE races.race_length = "5 Kilometers" and races.user_id = '.$this->user->user_id.'
+        ORDER BY races.race_date';
 
     # Sanatize data
     $_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -106,11 +120,109 @@ class races_controller extends base_controller {
     # Pass data to the View
     $this->template->content->five_kilometers = $five_kilometers;
 
+    # Build the query for 5 Mile races
+    # Order posts by created date in Descending order
+    $q = 'SELECT
+        races.user_id,
+        races.race_id,
+        races.race_name,
+        races.race_date,
+        races.race_length,
+        races.race_time_string,
+        races.race_time_int,
+        races.race_pace_string
+        FROM races
+        WHERE races.race_length = "5 Miles" and races.user_id = '.$this->user->user_id.'
+        ORDER BY races.race_date';
+
+    # Sanatize data
+    $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+    # Run the query
+    $five_miles = DB::instance(DB_NAME)->select_rows($q);
+
+    # Pass data to the View
+    $this->template->content->five_miles = $five_miles;
+
+    # Build the query for 10 kilometer races
+    # Order posts by created date in Descending order
+    $q = 'SELECT
+        races.user_id,
+        races.race_id,
+        races.race_name,
+        races.race_date,
+        races.race_length,
+        races.race_time_string,
+        races.race_time_int,
+        races.race_pace_string
+        FROM races
+        WHERE races.race_length = "10 Kilometers" and races.user_id = '.$this->user->user_id.'
+        ORDER BY races.race_date';
+
+    # Sanatize data
+    $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+    # Run the query
+    $ten_kilometers = DB::instance(DB_NAME)->select_rows($q);
+
+    # Pass data to the View
+    $this->template->content->ten_kilometers = $ten_kilometers;
+
+    # Build the query for Half Marathon races
+    # Order posts by created date in Descending order
+    $q = 'SELECT
+        races.user_id,
+        races.race_id,
+        races.race_name,
+        races.race_date,
+        races.race_length,
+        races.race_time_string,
+        races.race_time_int,
+        races.race_pace_string
+        FROM races
+        WHERE races.race_length = "Half Marathon" and races.user_id = '.$this->user->user_id.'
+        ORDER BY races.race_date';
+
+    # Sanatize data
+    $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+    # Run the query
+    $half_marathons = DB::instance(DB_NAME)->select_rows($q);
+
+    # Pass data to the View
+    $this->template->content->half_marathons = $half_marathons;
+
+    # Build the query for Full Marathon races
+    # Order posts by created date in Descending order
+    $q = 'SELECT
+        races.user_id,
+        races.race_id,
+        races.race_name,
+        races.race_date,
+        races.race_length,
+        races.race_time_string,
+        races.race_time_int,
+        races.race_pace_string
+        FROM races
+        WHERE races.race_length = "Full Marathon" and races.user_id = '.$this->user->user_id.'
+        ORDER BY races.race_date';
+
+    # Sanatize data
+    $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+    # Run the query
+    $full_marathons = DB::instance(DB_NAME)->select_rows($q);
+
+    # Pass data to the View
+    $this->template->content->full_marathons = $full_marathons;
+
     #Create array of CSS files
         $client_files_head = Array (
             'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css',
             'http://code.jquery.com/ui/1.10.3/jquery-ui.js',
-            '../js/races_index.js'
+            '../js/jquery.tablesorter.min.js',
+            '../js/races_index.js',
+            '../css/table_style.css'
             );
 
     #Use Load client_files to generate the links from the above array
