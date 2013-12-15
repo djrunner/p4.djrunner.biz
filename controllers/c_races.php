@@ -76,7 +76,7 @@ class races_controller extends base_controller {
 
 	public function index() {
 
-	/*
+	
 
     # Set up the View
     $this->template->content = View::instance('v_races_index');
@@ -84,44 +84,40 @@ class races_controller extends base_controller {
 
     # Build the query
     # Order posts by created date in Descending order
-    $q = 'SELECT 
-            posts.content,
-            posts.created,
-            posts.user_id AS post_user_id,
-            users_users.user_id AS follower_id,
-            users.first_name,
-            users.last_name,
-            users.image_location,
-            posts.post_id AS post_id
-        FROM posts
-        INNER JOIN users_users 
-            ON posts.user_id = users_users.user_id_followed
-        INNER JOIN users 
-            ON posts.user_id = users.user_id
-        WHERE users_users.user_id = '.$this->user->user_id .'
-        ORDER BY posts.created DESC' ;
+    $q = 'SELECT
+        races.user_id,
+        races.race_id,
+        races.race_name,
+        races.race_date,
+        races.race_length,
+        races.race_time_string,
+        races.race_time_int,
+        races.race_pace_string
+        FROM races
+        WHERE races.user_id = ".$this->user->user_id ." and races.race_length = "5 Kilometers"
+        ORDER BY races.race_date' ;
 
     # Sanatize data
     $_POST = DB::instance(DB_NAME)->sanitize($_POST);
 
     # Run the query
-    $posts = DB::instance(DB_NAME)->select_rows($q);
+    $five_kilometers = DB::instance(DB_NAME)->select_rows($q);
 
     # Pass data to the View
-    $this->template->content->posts = $posts;
+    $this->template->content->five_kilometers = $five_kilometers;
 
     #Create array of CSS files
         $client_files_head = Array (
-            '../css/css.css'
+            'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css',
+            'http://code.jquery.com/ui/1.10.3/jquery-ui.js',
+            '../js/races_index.js'
             );
 
-        #Use Load client_files to generate the links from the above array
-        $this->template->client_files_head = Utils::load_client_files($client_files_head);
+    #Use Load client_files to generate the links from the above array
+    $this->template->client_files_head = Utils::load_client_files($client_files_head);
 
     # Render the View
     echo $this->template;
-
-    */
 
     }
 }
