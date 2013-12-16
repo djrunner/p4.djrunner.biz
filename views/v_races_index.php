@@ -1,5 +1,18 @@
 <h1>Here are your race stats</h1>
 
+<?=$total_race_time?>
+
+<?=$total_race_events?>
+
+<?=$average_race_time_int?><br>	
+
+<?=$average_race_time_string_hours?><br>
+<?=$average_race_time_string_minutes?><br>
+<?=$average_race_time_string_seconds?><br>
+
+
+<?=$average_race_time_string?>
+
 <div id="tabs">
 	<ul>
     <li><a href="#tabs-1">5 Kilometer</a></li>
