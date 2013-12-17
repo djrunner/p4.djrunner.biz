@@ -95,80 +95,7 @@ class races_controller extends base_controller {
     $this->template->content = View::instance('v_races_index');
     $this->template->title   = "Races";
 
-    $q = 'SELECT
-        races.race_time_int
-        FROM races
-        WHERE races.race_length = "5 Kilometers" and races.user_id = '.$this->user->user_id.'';
-
-        $race_time_int_array = DB::instance(DB_NAME)->select_array($q, 'race_time_int');
-
-        $total_race_time = 0;
-
-        foreach($race_time_int_array as $time) {
-            $total_race_time = $total_race_time + (int) $time['race_time_int'];
-        }   
-
-        $total_race_events = 0;
-
-        foreach($race_time_int_array as $time) {
-            $total_race_events = $total_race_events + (int) $time;
-        } 
-
-        $average_race_time_int = round ($total_race_time / $total_race_events);
-
-        $average_race_time_int_hours = floor ($average_race_time_int / 3600);
-
-        if ($average_race_time_int_hours < 1)   {
-            $average_race_time_string_hours = "00";
-
-        } else if ($average_race_time_int_hours < 10) {
-            $average_race_time_string_hours = "0" + (string) $average_race_time_int_hours;
-
-        } else {
-            $average_race_time_string_hours = (string) $average_race_time_int_hours;
-        }
-
-        $average_race_time_int_remain = $average_race_time_int - ($average_race_time_int_hours * 3600);
-
-        $average_race_time_int_minutes = floor ($average_race_time_int_remain / 60);
-
-        if ($average_race_time_int_minutes < 1)   {
-            $average_race_time_string_minutes = "00";
-
-        } else if ($average_race_time_int_minutes < 10) {
-            $average_race_time_string_minutes = "0" + (string) $average_race_time_int_minutes;
-
-        } else {
-            $average_race_time_string_minutes = (string) $average_race_time_int_minutes;
-        }
-
-        $average_race_time_int_seconds = $average_race_time_int_remain - ($average_race_time_int_minutes * 60);
-
-        if ($average_race_time_int_seconds < 1)   {
-            $average_race_time_string_seconds = (string) "00";
-
-        } else if ($average_race_time_int_seconds < 10) {
-            $average_race_time_string_seconds = "0" + (string) $average_race_time_int_seconds;
-
-        } else {
-            $average_race_time_string_seconds = (string) $average_race_time_int_seconds;
-        }
-
-        $average_race_time_string = $average_race_time_string_hours.":".$average_race_time_string_minutes.":".$average_race_time_string_seconds;
-
-        $this->template->content->total_race_time = $total_race_time;
-
-        $this->template->content->total_race_events = $total_race_events;
-
-        $this->template->content->average_race_time_int = $average_race_time_int;
-
-        $this->template->content->average_race_time_string_hours = $average_race_time_string_hours;
-        $this->template->content->average_race_time_string_minutes = $average_race_time_string_minutes;
-        $this->template->content->average_race_time_string_seconds = $average_race_time_string_seconds;
-
-        $this->template->content->average_race_time_string = $average_race_time_string;
-
-
+    
 
     # Build the query for 5 Kilometer races
     # Order posts by created date in Descending order
@@ -288,6 +215,39 @@ class races_controller extends base_controller {
 
     # Pass data to the View
     $this->template->content->full_marathons = $full_marathons;
+
+   
+        $race_time_5kilometers_average = Average_Calculator::time_average("5 Kilometers", $this->user->user_id);
+        $this->template->content->race_time_5kilometers_average = $race_time_5kilometers_average;
+
+        $race_pace_5kilometers_average = Average_Calculator::pace_average("5 Kilometers", $this->user->user_id);
+        $this->template->content->race_pace_5kilometers_average = $race_pace_5kilometers_average;
+
+        $race_time_5mile_average = Average_Calculator::time_average("5 Miles", $this->user->user_id);
+        $this->template->content->race_time_5mile_average = $race_time_5mile_average;
+
+        $race_pace_5mile_average = Average_Calculator::pace_average("5 Miles", $this->user->user_id);
+        $this->template->content->race_pace_5mile_average = $race_pace_5mile_average;
+
+        $race_time_10kilometers_average = Average_Calculator::time_average("10 Kilometers", $this->user->user_id);
+        $this->template->content->race_time_10kilometers_average = $race_time_10kilometers_average;
+
+        $race_pace_10kilometers_average = Average_Calculator::pace_average("10 Kilometers", $this->user->user_id);
+        $this->template->content->race_pace_10kilometers_average = $race_pace_10kilometers_average;
+
+        $race_time_halfMarathon_average = Average_Calculator::time_average("Half Marathon", $this->user->user_id);
+        $this->template->content->race_time_halfMarathon_average = $race_time_halfMarathon_average;
+
+        $race_pace_halfMarathon_average = Average_Calculator::pace_average("Half Marathon", $this->user->user_id);
+        $this->template->content->race_pace_halfMarathon_average = $race_pace_halfMarathon_average;
+
+        $race_time_fullMarathon_average = Average_Calculator::time_average("Full Marathon", $this->user->user_id);
+        $this->template->content->race_time_fullMarathon_average = $race_time_fullMarathon_average;
+
+        $race_pace_fullMarathon_average = Average_Calculator::pace_average("Full Marathon", $this->user->user_id);
+        $this->template->content->race_pace_fullMarathon_average = $race_pace_fullMarathon_average;
+        
+
 
     #Create array of CSS files
         $client_files_head = Array (
