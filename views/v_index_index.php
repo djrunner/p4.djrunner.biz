@@ -8,7 +8,10 @@
 		times and paces as well!
 	</p>
 	<p>
-		If you're new to this site, click the sign-up button
+		If you're new to this site, click the "Sign-up" button
 		on the top of the page!
+	</p>
+	<p>
+		If you're a returning member, click the "Login" button!
 	</p>
 </div>

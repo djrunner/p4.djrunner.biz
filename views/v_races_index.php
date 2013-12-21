@@ -6,10 +6,10 @@
 
 	<h3>Here are your race stats Below:</h3>
 
-	<p>The first five tabs hold a table of the corresponding race times and race paces. 
-		The last tab keeps track of your average times and paces per race. These averages
-		are automatically calculated whenever you add a new race. 
-		To add a new race, click "Add a Race" on the menu at the top of the screen!
+	<p>The tabs below contain tables that display a list if your completed races.
+		Above each table is a display of your average race time and race pace for each race.
+		These averages are automatically updated whenever you add a new completed race to your list.
+		Click the "Add a race" button on the top of the screen to log another race!
 	</p>
 
 </div>
@@ -23,11 +23,13 @@
     <li><a href="#tabs-3">10 Kilometers</a></li>
     <li><a href="#tabs-4">Half Marathon</a></li>
     <li><a href="#tabs-5">Full Marathon</a></li>
-    <li><a href="#tabs-6">Race Stats</a></li>
   </ul>
 
 	<div id="tabs-1">
 		<div id="5_kilometers">
+
+			<p>Average 5 Kilometer time: <?=$race_time_5kilometers_average?></p>
+			<p>Average 5 Kilometer pace: <?=$race_pace_5kilometers_average?></p>
 
 			<table id="table1" class="tablesorter">
 				<thead>
@@ -48,6 +50,9 @@
 
 	<div id="tabs-2">
 		<div id="5_miles">
+
+			<p>Average 5 Mile time: <?=$race_time_5mile_average?></p>
+		<p>Average 5 Mile pace: <?=$race_pace_5mile_average?></p>
 			
 			<table id="table2" class="tablesorter">
 				<thead>
@@ -69,6 +74,9 @@
 	<div id="tabs-3">
 		<div id="10_kilometers">
 
+			<p>Average 10 Kilometer time: <?=$race_time_10kilometers_average?></p>
+		<p>Average 10 Kilometer pace: <?=$race_pace_10kilometers_average?></p>
+
 			<table id="table3" class="tablesorter">
 				<thead>
 					<tr><th>Race Name</th><th>Race Date</th><th>Race Time</th><th>Race Pace</th></tr>
@@ -89,6 +97,9 @@
 
 	<div id="tabs-4">
 		<div id="half_marathon">
+
+			<p>Average Half Marathon time: <?=$race_time_halfMarathon_average?></p>
+		<p>Average Half Marathon pace: <?=$race_pace_halfMarathon_average?></p>
 			
 			<table id="table4" class="tablesorter">
 				<thead>
@@ -109,6 +120,9 @@
 
 	<div id="tabs-5">
 		<div id="full_marathon">
+
+			<p>Average Full Marathon time: <?=$race_time_fullMarathon_average?></p>
+		<p>Average Full Marathon pace: <?=$race_pace_fullMarathon_average?></p>
 			
 			<table id="table5" class="tablesorter">
 				<thead>
@@ -125,25 +139,6 @@
 			</table>
 
 		</div>
-	</div>
-
-	<div id="tabs-6">
-		<p>Average 5 Kilometer time: <?=$race_time_5kilometers_average?></p>
-		<p>Average 5 Kilometer pace: <?=$race_pace_5kilometers_average?></p>
-
-		<p>Average 5 Mile time: <?=$race_time_5mile_average?></p>
-		<p>Average 5 Mile pace: <?=$race_pace_5mile_average?></p>
-
-		<p>Average 10 Kilometer time: <?=$race_time_10kilometers_average?></p>
-		<p>Average 10 Kilometer pace: <?=$race_pace_10kilometers_average?></p>
-
-		<p>Average Half Marathon time: <?=$race_time_halfMarathon_average?></p>
-		<p>Average Half Marathon pace: <?=$race_pace_halfMarathon_average?></p>
-
-		<p>Average Full Marathon time: <?=$race_time_fullMarathon_average?></p>
-		<p>Average Full Marathon pace: <?=$race_pace_fullMarathon_average?></p>
-
-
 	</div>
 
 

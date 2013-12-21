@@ -2,6 +2,10 @@
 
 class String_to_Int_Converter {
 
+        #These functions are used in the race_add function
+        #Given a string in time format (i.e. "00:00:00"), 
+        #this function converts the string into seconds as an interger
+
 	public static function get_race_time_int($string)	{
 
 		$seconds = (int) $string{7}; 

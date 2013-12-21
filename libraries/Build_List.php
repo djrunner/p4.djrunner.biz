@@ -2,6 +2,7 @@
 
 class Build_List {
 	
+    #This function builds the table for the apporpriate user and race length
 
 	public static function get_array ($race_length, $user)	{
 

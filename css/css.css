@@ -129,3 +129,11 @@ body 					{
 #v_users_signup 	legend 	{
 	font-weight: bold;
 }
+
+#tabs 				p		{
+
+	font-family:arial;
+	font-size: 10pt;
+	text-align: center;
+	font-weight: bold;
+}
