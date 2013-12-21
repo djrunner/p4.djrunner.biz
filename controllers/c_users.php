@@ -45,30 +45,6 @@ class users_controller extends base_controller {
 
     public function p_signup() {
 
-        # Dump out the results of POST to see what the form submitted
-        //print_r($_POST);
-
-        # Error testing, if any field is null or contains the empty string the user
-        # will be redirected to the signup page with an error message displayed.
-
-        /*
-
-        if($_POST['first_name'] == null ||  $_POST['first_name'] == ''  ||
-           $_POST['last_name']  == null ||  $_POST['last_name']  == ''  ||
-           $_POST['email']      == null ||  $_POST['email']      == ''  ||
-           $_POST['password']   == null ||  $_POST['password']   == ''  
-        ) 
-            Router::redirect("/users/signup/error");
-
-        /*
-        # Runs the $_POST['email'] field through the Email test function
-        if(!Email_Test::test($_POST['email']))
-
-            Router::redirect("/users/signup/error");
-            Fix this this Java Script!
-        */
-
-
         # More data we want stored with the user
         $_POST['created'] = Time::now();
         $_POST['modified'] = Time::now();
@@ -113,6 +89,7 @@ class users_controller extends base_controller {
 
         #Create array of CSS files
         $client_files_head = Array (
+            "../../css/css.css"
             );
 
         #Use Load client_files to generate the links from the above array
@@ -151,7 +128,7 @@ class users_controller extends base_controller {
 
             # Send them to the main page
 
-            Router::redirect("profile");
+            Router::redirect("/races/index");
         }
 
     }
@@ -176,102 +153,4 @@ class users_controller extends base_controller {
 
     }
 
-    public function profile($error = NULL, $user_name = NULL) {
-
-        #If user is blank, they're not logged in; redirect them to the Login page
-        if (!$this->user) {
-            Router::redirect('/users/login');
-        }
-
-        # If they weren't redirected away, continue:
-
-        # Setup view
-        $this->template->content = View::instance('v_users_profile');
-        $this->template->title = "Profile of ".$this->user->first_name;
-
-        $this->template->content->user_name = $user_name;
-
-        # Set up error
-        $this->template->content->error = $error;
-
-        #Create array of CSS files
-        $client_files_head = Array (
-        "http://jquery.bassistance.de/validate/demo/site-demos.css"
-            );
-
-        #Use Load client_files to generate the links from the above array
-        $this->template->client_files_head = Utils::load_client_files($client_files_head);
-
-        #Create array of CSS files
-        $client_files_body = Array (
-        'http://jquery.bassistance.de/validate/jquery.validate.js',
-        'http://jquery.bassistance.de/validate/additional-methods.js',
-        '../js/profile.js'
-            );
-
-        #Use Load client_files to generate the links from the above array
-        $this->template->client_files_body = Utils::load_client_files($client_files_body);
-
-        echo $this->template;
-
-        
-    }
-
-    public function upload_image() {
-
-        print_r($_POST);
-
-        /*
-
-        # Allows user to upload a picture,
-        $allowedExts = array("gif", "jpeg", "jpg", "png");
-        $temp = explode(".", $_FILES["file"]["name"]);
-        $extension = end($temp);
-
-
-
-        
-
-        # The file uploaded must be a gif, jpeg, jpg, pjpeg, x-png, or png
-        # The file cannot be any other file (i.e exe)
-        if ((($_FILES["file"]["type"] == "image/gif")
-        || ($_FILES["file"]["type"] == "image/jpeg")
-        || ($_FILES["file"]["type"] == "image/jpg")
-        || ($_FILES["file"]["type"] == "image/pjpeg")
-        || ($_FILES["file"]["type"] == "image/x-png")
-        || ($_FILES["file"]["type"] == "image/png"))
-
-        # The fille must be a certian size
-        && ($_FILES["file"]["size"] < 20000)
-        && in_array($extension, $allowedExts)) {
-
-            if ($_FILES["file"]["error"] > 0) {
-                echo "Error: " . $_FILES["file"]["error"] . "<br>";
-            }
-
-            else {
-                    
-                   
-                    # Actual file stored in images folder
-                    move_uploaded_file($_FILES["field"]["tmp_name"],
-                    "images/" . $_FILES["field"]["name"]);
-
-                    # Reference to image stored in DB
-                    $data = Array("image_location" => "images/" . $_FILES["file"]["name"]);
-                    DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = '".$this->user->user_id."'");
-
-                    Router::redirect('/users/profile');
-                    /*
-            }
-        }
-        # If file not acceptable
-        else {
-            
-                        Router::redirect("/users/profile/error");
-
-            */
-        
-        
-    
-    }
 } # end of the class

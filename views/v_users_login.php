@@ -1,4 +1,11 @@
-<div class="mainBox" id="users_login">
+<div class="mainBox" id="v_users_login">
+
+<h1>Welcome back to Race Tracker!</h1>
+
+<p>If you're a returning member please sign in below.
+    Other please sign up by clicking on the "Sign Up" button
+    from the menu-bar on the top of the screen.
+</p>
 
 <form method='POST' action='/users/p_login'>
 
@@ -17,7 +24,7 @@
     <?php if(isset($error)): ?>
         <div class='error'>
         </br>
-            Login failed. Please double check your email and password.
+           <p> Login failed. Please double check your email and password. <p>
         </div>
         <br>
     <?php endif; ?>

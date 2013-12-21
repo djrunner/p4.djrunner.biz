@@ -1,0 +1,131 @@
+body 					{
+	background-color: #CCC;
+}
+
+#v_template_menu 		{
+	padding:  			30px;
+	width:  			800px;
+	position:  			absolute;
+	left:  				50%;
+	margin-left:  		-420px;
+}
+
+#v_template_menu	a	{
+	
+	text-decoration: 	none;
+
+	font-weight:		bold;
+	color:				#CCC;
+	background-color:  	#666;
+
+	border-style:  		solid;
+	border-color:  		#009;
+	border-radius:  	25px;
+
+	width:				100px;
+	height:				25px;
+	padding:  			15px;
+	margin: 			45px;
+}	
+
+#v_template_menu	a:hover		{
+
+	color:				white;
+	background-color:  	black;
+}
+
+/* the mainBox class designates the template for the center box for each page. *
+   The Width and height will be decided individualy for each page */
+.mainBox {
+
+	/* Creates and colors main Box */
+	border-style: 		solid; 
+	border-color:  		#009;
+	background-color:  	#666;
+	padding:  			30px;    
+
+	/* Centers block in center of page */
+	position: absolute;
+	top:				50%;
+	left:				50%;   
+
+	/* Creates rounded edges around block */
+	border-radius:		25px;
+}
+
+.mainBox 	p		{
+	font-weight: bold;
+}
+
+#v_index_index		{
+
+	text-align:  		center;
+
+	/* Size of index box */
+	width:				500px;
+	height:  			200px;
+
+	/* Centering of index box */
+	margin-top:			-120px;
+	margin-left:		-270px;
+
+} 
+
+#v_races_index 		{
+	position: absolute;
+	top:				15%;
+	left:				50%; 
+
+	text-align:  		center;
+
+	width:  			1000px;
+	height:  			200px;
+
+	margin-left:  		-520px;
+}
+
+#race_table 		{
+	position: absolute;
+	top:				60%;
+	left:				50%;
+
+	width:  			1000px;   
+
+	margin-left:  		-520px;
+}
+
+#v_races_add 		{
+
+	width:				800px;
+	height:  			400px;
+
+	margin-top:  		-220px;
+	margin-left:  		-420px;
+}
+
+#v_races_add 	legend 	{
+	font-weight: bold;
+}
+
+#v_users_login 			{
+
+	width:  			800px;
+	height:  			400px;
+
+	margin-top:  		-220px;
+	margin-left:  		-420px;
+}
+
+#v_users_signup 		{
+
+	width:				800px;
+	height:  			400px;
+
+	margin-top:  		-220px;
+	margin-left:  		-420px;
+
+}
+
+#v_users_signup 	legend 	{
+	font-weight: bold;
+}

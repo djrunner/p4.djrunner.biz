@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 
 	<script src="//code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="../css/css.css">
 					
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -16,22 +17,23 @@
 
 	<div id='v_template_menu'>
 
-		<a href='/'>Home</a><br>
+		<a href='/'>Home</a>
+
+		<!-- Menu for users who are logged in -->
+		<?php if($user): ?>
 
 
-			<a href='/users/logout'>Logout</a><br>
-			<a href='/users/Profile'>Profile</a><br>
-			<a href='/races/add'>Add a Race</a><br>
-			<a href='/races/index'>Races Index</a><br>
-			<!--
-			<a href='/posts/index'>See Posts</a><br>
-			<a href='/posts/add'>Add Posts</a><br>
-			<a href='/posts/users'>See Users</a><br>
-			-->
+			<a href='/users/logout'>Logout</a>
+			<a href='/races/index'>Profile</a>
+			<a href='/races/add'>Add a Race</a>
 
-            <a href='/users/signup'>Sign up</a><br>
-            <a href='/users/login'>Log in</a><br>
+		<!-- Menu options for users who are not logged in -->
+		<?php else: ?>
 
+            <a href='/users/signup'>Sign up</a>
+            <a href='/users/login'>Log in</a>
+        <?php endif; ?>
+    <br><br>
     </div>
 
 	<?php if(isset($content)) echo $content; ?>

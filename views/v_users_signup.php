@@ -1,4 +1,6 @@
-<div id="users_signUp">
+<div id="v_users_signup" class="mainBox">
+
+  <h1>Sign up to use Race Tracker!</h1>
 
 <form class="cmxform" id="signup_form" method='POST' action='/users/p_signup'>
     <fieldset>

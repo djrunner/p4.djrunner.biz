@@ -1,11 +1,14 @@
-<p>
-	Hello World! You have successfully spawned a new application.
-</p>
+<div class="mainBox" id="v_index_index">
+	<h1>Race Tracker</h1>
 
-<p>
-	This message is being triggered via the c_index.php controller, within the index() method.
-</p>
-
-<p>
-	<strong>Since everything is in working order, you should now delete <?php echo APP_PATH?>diagnostics.php</strong>
-</p>
+	<p>
+		Welcome To Race Tracker! This app allows you to keep track
+		of all your races; from 5 Kilometer runs to full marathons.
+		Keep an eye on all your runs, and keep track of your average
+		times and paces as well!
+	</p>
+	<p>
+		If you're new to this site, click the sign-up button
+		on the top of the page!
+	</p>
+</div>

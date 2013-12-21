@@ -1,4 +1,4 @@
-<div>
+<div class="mainBox" id="v_races_add">
 	<form class="cmxform" id="race_add_form" method='POST' action='/races/p_add'>
 		<fieldset>
 			<legend>Enter the details of your race!</legend>

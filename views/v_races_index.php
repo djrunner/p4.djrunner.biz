@@ -1,5 +1,20 @@
-<h1>Here are your race stats</h1>
+<div class="mainBox" id="v_races_index">
 
+	<h1>Welcome <?=$user->first_name?></h1>
+
+	<h3>E-mail Address: <?=$user->email?></h3>
+
+	<h3>Here are your race stats Below:</h3>
+
+	<p>The first five tabs hold a table of the corresponding race times and race paces. 
+		The last tab keeps track of your average times and paces per race. These averages
+		are automatically calculated whenever you add a new race. 
+		To add a new race, click "Add a Race" on the menu at the top of the screen!
+	</p>
+
+</div>
+
+<div id="race_table">
 
 <div id="tabs">
 	<ul>
@@ -131,5 +146,7 @@
 
 	</div>
 
+
+</div>
 
 </div>
