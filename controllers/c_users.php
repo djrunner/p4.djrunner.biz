@@ -58,20 +58,6 @@ class users_controller extends base_controller {
         # Insert this user into the database
         $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
-        # Sets up user to follow him or herself,
-        # The user will not see him or herself in the posts/users page.
-
-        /*
-        $data = Array(
-            "created"          => Time::now(),
-            "user_id"          => $user_id,
-            "user_id_followed" => $user_id
-            );
-
-        DB::instance(DB_NAME)->insert('users_users', $data);
-
-        */
-
         # Sends the user to the login page
         Router::redirect('/users/login');
 
@@ -116,7 +102,7 @@ class users_controller extends base_controller {
 
         $token = DB::instance(DB_NAME)->select_field($q); 
 
-        # IF we didn't find a matching toek in database, failed
+        # IF we didn't find a matching token in database, failed
         if(!$token) {
 
             Router::redirect("/users/login/error");

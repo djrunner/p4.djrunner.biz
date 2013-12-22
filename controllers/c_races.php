@@ -47,11 +47,13 @@ class races_controller extends base_controller {
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
 
+        # Calculate the race time in seconds
         $_POST['race_time_int'] = String_to_Int_Converter::get_race_time_int($_POST['race_time_string']);
 
+        #Calculate the race pace in seconds
         $_POST['race_pace_int'] = String_to_Int_Converter::get_race_pace_int($_POST['race_pace_string']);
 
-        # Insert
+        # Insert $_Post into database
         DB::instance(DB_NAME)->insert('races', $_POST);
 
         # Send user to list of posts
@@ -67,14 +69,14 @@ class races_controller extends base_controller {
     $this->template->content = View::instance('v_races_index');
     $this->template->title   = "Races";
 
-    # Get array for table
+    # Get array for table, per race
     $five_kilometers = Build_List::get_array("5 Kilometers", $this->user->user_id);
     $five_miles = Build_List::get_array("5 Miles", $this->user->user_id);
     $ten_kilometers = Build_List::get_array("10 Kilometers", $this->user->user_id);
     $half_marathons = Build_List::get_array("Half Marathon", $this->user->user_id);
     $full_marathons = Build_List::get_array("Full Marathon", $this->user->user_id);
 
-    # Pass data to the View
+    # Pass data to the View, per race
     $this->template->content->five_kilometers = $five_kilometers;
     $this->template->content->five_miles = $five_miles;
     $this->template->content->ten_kilometers = $ten_kilometers;
