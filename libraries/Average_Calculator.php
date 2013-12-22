@@ -44,7 +44,7 @@ class Average_Calculator {
             $average_race_time_string_hours = "00";
 
         } else if ($average_race_time_int_hours < 10) {
-            $average_race_time_string_hours = "0" + (string) $average_race_time_int_hours;
+            $average_race_time_string_hours = "0" . (string) $average_race_time_int_hours;
 
         } else {
             $average_race_time_string_hours = (string) $average_race_time_int_hours;
@@ -72,7 +72,7 @@ class Average_Calculator {
             $average_race_time_string_seconds = (string) "00";
 
         } else if ($average_race_time_int_seconds < 10) {
-            $average_race_time_string_seconds = "0" + (string) $average_race_time_int_seconds;
+            $average_race_time_string_seconds = "0" . (string) $average_race_time_int_seconds;
 
         } else {
             $average_race_time_string_seconds = (string) $average_race_time_int_seconds;
